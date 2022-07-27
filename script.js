@@ -2,9 +2,6 @@ let firstNumber;
 let secondNumber;
 let operation;
 let sum;
-let subtract;
-let multiply;
-let divide;
 
 console.log(firstNumber, operation, secondNumber);
 
