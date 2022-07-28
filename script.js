@@ -2,6 +2,9 @@ let firstNumber;
 let secondNumber;
 let operation;
 let sum;
+let multiply;
+let subtract;
+let divide;
 
 console.log(firstNumber, operation, secondNumber);
 
@@ -41,20 +44,10 @@ function clickOperation(input) {
             operation = undefined;
             break;
         }
-        default: {
-            console.log("Unknown operation: " + input);
-        }
-    }
-    
-    console.log(firstNumber, operation, secondNumber);
-}
-
-function clickOperation(input) {
-    switch (input) {
         case '-': {
             operation = '-';
             break;
-        }
+        }  
         case '=': {
             subtract = Number(firstNumber) - Number(secondNumber);
             console.log(subtract);
@@ -63,16 +56,6 @@ function clickOperation(input) {
             operation = undefined;
             break;
         }
-        default: {
-            console.log("Unknown operation: " - input);
-        }
-    }
-    
-    console.log(firstNumber, operation, secondNumber);
-}
-
-function clickOperation(input) {
-    switch (input) {
         case 'x': {
             operation = 'x';
             break;
@@ -85,16 +68,6 @@ function clickOperation(input) {
             operation = undefined;
             break;
         }
-        default: {
-            console.log("Unknown operation: " * input);
-        }
-    }
-    
-    console.log(firstNumber, operation, secondNumber);
-}
-
-function clickOperation(input) {
-    switch (input) {
         case '÷': {
             operation = '÷';
             break;
@@ -106,12 +79,7 @@ function clickOperation(input) {
             secondNumber = undefined;
             operation = undefined;
             break;
-        }
-        default: {
-            console.log("Unknown operation: " / input);
-        }
+        }   
     }
-    
     console.log(firstNumber, operation, secondNumber);
 }
-
