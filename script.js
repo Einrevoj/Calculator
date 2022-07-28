@@ -1,16 +1,9 @@
 let firstNumber;
 let secondNumber;
 let operation;
-let sum;
-let multiply;
-let subtract;
-let divide;
+let display = document.getElementById("display");
 
 console.log(firstNumber, operation, secondNumber);
-
-function hello() {
-    console.log("Hello, World!");
-}
 
 function clickNumber(input) {
     if (operation === undefined) {
@@ -19,12 +12,14 @@ function clickNumber(input) {
         } else {
             firstNumber = String(firstNumber) + String(input);
         }
+        updateDisplay(firstNumber);
     } else {
         if (secondNumber === undefined) {
             secondNumber = String(input);
         } else {
             secondNumber = String(secondNumber) + String(input);
         }
+        updateDisplay(secondNumber);
     }
 
     console.log(firstNumber, operation, secondNumber);
@@ -32,54 +27,103 @@ function clickNumber(input) {
 
 function clickOperation(input) {
     switch (input) {
-        case '+': {
-            operation = '+';
+        case "x": {
+            operation = "x";
             break;
         }
-        case '=': {
-            sum = Number(firstNumber) + Number(secondNumber);
-            console.log(sum);
-            firstNumber = undefined;
-            secondNumber = undefined;
-            operation = undefined;
+        case "÷": {
+            operation = "÷";
             break;
         }
-        case '-': {
-            operation = '-';
-            break;
-        }  
-        case '=': {
-            subtract = Number(firstNumber) - Number(secondNumber);
-            console.log(subtract);
-            firstNumber = undefined;
-            secondNumber = undefined;
-            operation = undefined;
+        case "+": {
+            operation = "+";
             break;
         }
-        case 'x': {
-            operation = 'x';
+        case "-": {
+            operation = "-";
             break;
         }
-        case '=': {
-            multiply = Number(firstNumber) * Number(secondNumber);
-            console.log(multiply);
-            firstNumber = undefined;
-            secondNumber = undefined;
-            operation = undefined;
+        case "=": {
+            calculate();
             break;
         }
-        case '÷': {
-            operation = '÷';
-            break;
+        default: {
+            console.log("Unknown operation: " + input);
         }
-        case '=': {
-            divide = Number(firstNumber) / Number(secondNumber);
-            console.log(divide);
-            firstNumber = undefined;
-            secondNumber = undefined;
-            operation = undefined;
-            break;
-        }   
     }
+    
     console.log(firstNumber, operation, secondNumber);
+}
+
+function switchSign() {
+    if (operation === undefined) {
+        firstNumber = Number(firstNumber);
+        firstNumber = -1 * firstNumber;
+        firstNumber = String(firstNumber)
+        updateDisplay(firstNumber);
+    } else {
+        secondNumber = Number(secondNumber);
+        secondNumber = -1 * secondNumber;
+        secondNumber = String(secondNumber)
+        updateDisplay(secondNumber);
+    }
+}
+
+function switchToPercent() {
+    if (operation === undefined) {
+        firstNumber = Number(firstNumber);
+        firstNumber = firstNumber / 100;
+        firstNumber = String(firstNumber)
+        updateDisplay(firstNumber);
+    } else {
+        secondNumber = Number(secondNumber);
+        secondNumber = secondNumber / 100;
+        secondNumber = String(secondNumber)
+        updateDisplay(secondNumber);
+    }
+}
+
+function clearMemory() {
+    if (firstNumber === undefined
+        && secondNumber === undefined
+        && operation === undefined
+    ) {
+        updateDisplay(0);
+    }
+    firstNumber = undefined;
+    secondNumber = undefined;
+    operation = undefined;
+
+    console.log(firstNumber, operation, secondNumber);
+}
+
+function calculate() {
+    let result;
+    switch (operation) {
+        case "x": {
+            result = Number(firstNumber) * Number(secondNumber);
+            break;
+        }
+        case "÷": {
+            result = Number(firstNumber) / Number(secondNumber);
+            operation = "÷";
+            break;
+        }
+        case "+": {
+            result = Number(firstNumber) + Number(secondNumber);
+            break;
+        }
+        case "-": {
+            result = Number(firstNumber) - Number(secondNumber);
+            break;
+        }
+    }
+    console.log(result);
+    updateDisplay(result);
+    clearMemory();
+}
+
+function updateDisplay(number) {
+    number = Number(number).toLocaleString();
+    display.innerText = number;
 }
